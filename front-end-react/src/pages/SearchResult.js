@@ -36,6 +36,7 @@ import Pagination from '@mui/material/Pagination';
 
 import Container from "@mui/material/Container";
 import List from "@mui/material/List";
+import { formatMuiErrorMessage } from "@mui/utils";
 
 function SearchResult(props) {
   
@@ -338,8 +339,30 @@ console.log(error);
         }}
       >
         {paginator(searchResult, page, 10).data.map((value, index) => {
+      
+
+      function hasWhiteSpace(s) {
+        return s.indexOf(' ') >= 0;
+      }
+
+      var newResult;
+      if (hasWhiteSpace(result) == true) {
+        let spaceLoc = result.indexOf(' ');
+        
+          newResult = result.substring(0, spaceLoc);
+      }else {
+        newResult = result;
+      }
+
+
+      
+          let result2 = value.indexOf(newResult);
+          let searchColor = value.substring(result2, result2 + newResult.length);
+          let searchPlain1 = value.substring(0,result2)
+          let searchPlain2 = value.substring(result2 + newResult.length,value.length)
+
+          console.log(searchPlain2)
           return (
-  
 
 <>
       <div className="boxbox" key={value.id}>
@@ -347,7 +370,7 @@ console.log(error);
       <Box sx={{ flexGrow: 1 }}>
     <Grid container spacing={2}>
       <Grid item xs={8}>
-        <Item><span style={{marginTop:'30px'}}>{value}</span></Item>
+        <Item><span style={{marginTop:'30px'}}>{searchPlain1}{searchColor}{searchPlain2}</span></Item>
       </Grid>
       <Grid item xs={3}>
         <Item><Button onClick={() => {handleFavClickOpen(value);}}><span style={{fontWeight:"700"}}>添加收藏夹</span><StarIcon style={{color:"#F1C40F"}}/></Button></Item>

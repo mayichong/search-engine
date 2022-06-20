@@ -327,41 +327,11 @@ console.log(error);
   let resultShowing;
   let resultKeyShowing;
   let resultImgShowing;
-  if (Object.keys(searchResult).length === 1 && searchResult=='空'){
-    resultShowing = <p style={{paddingTop:"30px"}}>很抱歉，没有找到相关搜索结果</p>
-    resultKeyShowing = <p></p>
-  }else {
-    resultKeyShowing = searchKey.map((rows) => (
-      <>
-
-        <Button color="warning" onClick={() => {searchRelated(rows)}}><span style={{fontSize:"20px"}}>{rows}</span></Button>
-      </>
-     
-      
-    ))
-    
-    resultShowing = searchResult.map((rows)=> (
-      <>
-      <div className="boxbox" key={rows.id}>
-
-      <Box sx={{ flexGrow: 1 }}>
-    <Grid container spacing={2}>
-      <Grid item xs={8}>
-        <Item><span style={{marginTop:'30px'}}>{rows}</span></Item>
-      </Grid>
-      <Grid item xs={2}>
-        <Item><Button onClick={() => {handleFavClickOpen(rows);}}><span style={{fontWeight:"700"}}>添加收藏夹</span><StarIcon style={{color:"#F1C40F"}}/></Button></Item>
-      </Grid>
-    </Grid>
-  </Box>
-      </div>
-      </>
-   ))
-  }
 
   if (Object.keys(searchResult).length === 1 && searchResult=='空'){
     resultShowing = <p style={{paddingTop:"30px"}}>很抱歉，没有找到相关搜索结果</p>
   }else {
+    resultShowing = <p></p>
     resultKeyShowing = searchKey.map((rows) => (
       <>
         <Button color="warning" onClick={() => {searchRelated(rows)}}><span style={{fontSize:"20px"}}>{rows}</span></Button>
@@ -399,23 +369,6 @@ console.log(error);
 
 </Container>
     
-    resultShowing = searchResult.map((rows)=> (
-      <>
-      <div className="boxbox" key={rows.id}>
-
-      <Box sx={{ flexGrow: 1 }}>
-    <Grid container spacing={2}>
-      <Grid item xs={8}>
-        <Item><span style={{marginTop:'30px'}}>{rows}</span></Item>
-      </Grid>
-      <Grid item xs={2}>
-        <Item><Button onClick={() => {handleFavClickOpen(rows);}}><span style={{fontWeight:"700"}}>添加收藏夹</span><StarIcon style={{color:"#F1C40F"}}/></Button></Item>
-      </Grid>
-    </Grid>
-  </Box>
-      </div>
-      </>
-   ))
   }
 
 

@@ -130,9 +130,7 @@ func searchResultImg(c *gin.Context) {
 	a, b, d := Algorithm.Algorithm(result)
 
 	//后端打印出来
-	fmt.Println("Brob")
-	fmt.Println(a)
-	fmt.Println(b)
+
 	var userEmail model.UserEmail
 	//接受用户email来添加历史记录
 	err2 := c.ShouldBindJSON(&userEmail)

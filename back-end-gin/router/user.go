@@ -371,7 +371,7 @@ func deleteFav(c *gin.Context) {
 	db.Where("email = ? AND folder = ? AND result = ?", test.Email, test.Folder, test.Result).Delete(&test)
 
 	var checkEmpty model.Fav
-	db.First(&checkEmpty)
+	db.Where("email = ? AND folder = ?", test.Email, test.Folder).First(&checkEmpty)
 	var empty model.Fav
 
 	addEmpty := model.Fav{
@@ -379,7 +379,12 @@ func deleteFav(c *gin.Context) {
 		Folder: test.Folder,
 		Result: "空",
 	}
+
+	fmt.Println("WTF")
+	fmt.Println(checkEmpty)
+	fmt.Println("WTF")
 	if checkEmpty == empty {
+
 		db.Create(&addEmpty)
 	}
 }
